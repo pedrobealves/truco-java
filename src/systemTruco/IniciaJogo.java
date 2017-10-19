@@ -36,6 +36,7 @@ public class IniciaJogo {
         }
         Collections.shuffle(baralho, this.sementeAleatoria);
         manilha = baralho.get(0);
+
         baralho.remove(0);
     }
 

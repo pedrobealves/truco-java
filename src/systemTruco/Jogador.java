@@ -1,8 +1,9 @@
 package systemTruco;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -31,23 +32,18 @@ public class Jogador {
     }
 
     private void setNome() {
-        try {
-            FileReader arq = new FileReader("C:\\Users\\Pedro\\Desktop\\UTFPR\\POO\\systemTruco\\src\\systemTruco\\Nomes");
-            BufferedReader lerArq = new BufferedReader(arq);
-
-            String linha = lerArq.readLine();
+        File arq = new File("src\\systemTruco\\Nomes");
+        try (Reader in = new FileReader(arq); BufferedReader br = new
+                BufferedReader(in)) {
+            String linha;
             int count = 0, rand = randomico.nextInt(25);
-            while (linha != null) {
+            while ((linha = br.readLine()) != null) {
                 if (count == rand)
                     this.nome = linha;
                 count++;
-                linha = lerArq.readLine();
             }
-
-            arq.close();
-        } catch (IOException e) {
-            System.err.printf("Erro na abertura do arquivo: %s.\n",
-                    e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

@@ -1,12 +1,14 @@
 package systemTruco;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Mesa {
 
-    private ArrayList<Carta> baralho = new ArrayList<Carta>();
-    private ArrayList<Jogador> jogador = new ArrayList<Jogador>();
+    private ArrayList<Carta> baralho = new ArrayList<>();
+    private ArrayList<Jogador> jogador = new ArrayList<>();
     private Carta manilha;
     private Carta vira;
     private int rodada = 0;
@@ -56,26 +58,24 @@ public class Mesa {
 
 
     private void distribuirCartas() {
-        for (int i = 0; i < jogador.size(); i++)
-            jogador.get(i).distribuiCartas(baralho);
+        for (Jogador aJogador : jogador) aJogador.distribuiCartas(baralho);
     }
 
     public void verificarGanhador() {
         Jogador vencedor = null;
         int valorMaior = -1;
         for (Jogador aJogador : jogador)
-            if (manilha.getValor() == aJogador.cartaJogada().getValor()) {
+            if (Objects.equals(manilha.getValor(), aJogador.cartaJogada().getValor())) {
                 if (aJogador.cartaJogada().getId() > valorMaior) {
                     valorMaior = aJogador.cartaJogada().getId();
                     vencedor = aJogador;
                 }
             }
         if (vencedor == null) {
-            for (int j = 0; j < jogador.size(); j++) {
-                for (int i = 0; i < jogador.size(); i++) {
-                    if ((jogador.get(j).cartaJogada().getId() % 10 > jogador.get(i).cartaJogada().getId() % 10) && (jogador.get(j).getTime() != jogador.get(i).getTime())) {
-                        vencedor = jogador.get(j);
-                    }
+            vencedor = jogador.get(0);
+            for (Jogador bJogador : jogador) {
+                if ((bJogador.cartaJogada().getId() % 10 > vencedor.cartaJogada().getId() % 10) && (bJogador.getTime() != vencedor.getTime())) {
+                    vencedor = bJogador;
                 }
             }
         }

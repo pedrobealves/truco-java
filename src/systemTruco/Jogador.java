@@ -9,14 +9,16 @@ import java.util.Random;
 
 public class Jogador {
     private String nome;
-    private ArrayList<Carta> cartasJogador = new ArrayList<Carta>();
+    private ArrayList<Carta> cartasJogador = new ArrayList<>();
     private Random randomico = new Random();
     private Carta jogada;
     private Time time;
+    private IA ia;
 
     public Jogador(Time time) {
         this.time = time;
         this.setNome();
+        IA jogadorIA = new IA();
     }
 
     public Jogador(String nome) {
@@ -57,20 +59,8 @@ public class Jogador {
     }
 
     public void jogada(int suaJogada) {
-        switch (suaJogada) {
-            case 1:
-                this.jogada = cartasJogador.get(0);
-                cartasJogador.remove(0);
-                break;
-            case 2:
-                this.jogada = cartasJogador.get(1);
-                cartasJogador.remove(1);
-                break;
-            case 3:
-                this.jogada = cartasJogador.get(2);
-                cartasJogador.remove(2);
-                break;
-        }
+        this.jogada = cartasJogador.get(suaJogada - 1);
+        cartasJogador.remove(suaJogada - 1);
     }
 
     public Carta cartaJogada() {

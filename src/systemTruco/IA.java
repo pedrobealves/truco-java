@@ -4,10 +4,16 @@ import java.util.ArrayList;
 
 public class IA {
 
-    private ArrayList<Carta> baralho = new ArrayList<>();
+    private ArrayList<Jogador> jogador = new ArrayList<>();
 
-    public void jogadaIA() {
+    public IA(ArrayList<Jogador> jogador) {
+        this.jogador = jogador;
+    }
 
+    public void gerarJogada(Jogador vezJogador) {
+        for (Jogador aJogador : jogador) {
+            if (vezJogador.getCartasJogador()
+        }
     }
 
 }

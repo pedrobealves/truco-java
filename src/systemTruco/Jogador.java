@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Jogador {
     private String nome;
@@ -13,12 +14,12 @@ public class Jogador {
     private Random randomico = new Random();
     private Carta jogada;
     private Time time;
-    private IA ia;
+    private boolean jogadorIA;
 
     public Jogador(Time time) {
         this.time = time;
         this.setNome();
-        IA jogadorIA = new IA();
+        this.jogadorIA = true;
     }
 
     public Jogador(String nome) {
@@ -80,8 +81,21 @@ public class Jogador {
 
     }
 
-    public int gerarJogada() {
-        return randomico.nextInt(getCartasJogador().size()) + 1;
+    public void gerarJogada() {
+        int suaJogada = 0;
+
+        if (this.jogadorIA != true) {
+            verCartasJogador();
+            Scanner ler = new Scanner(System.in);
+            suaJogada = ler.nextInt();
+        } else {
+
+        }
+        jogada(suaJogada);
+    }
+
+    public boolean isJogadorIA() {
+        return jogadorIA;
     }
 
     public ArrayList<Carta> getCartasJogador() {

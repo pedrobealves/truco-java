@@ -11,10 +11,13 @@ public class Mesa {
     private ArrayList<Jogador> jogador = new ArrayList<>();
     private Carta manilha;
     private Carta vira;
+    Jogador vencedor = null;
     private int rodada = 0;
     private int valorTruco = 1;
     private boolean acabar = false;
     private boolean[] empate = new boolean[3];
+    private IA ia = new IA(jogador);
+    ;
 
     public Mesa(ArrayList<Carta> baralho, ArrayList<Jogador> jogador) {
         this.baralho = baralho;
@@ -27,16 +30,6 @@ public class Mesa {
     public void iniciaJogo() {
         while (rodada < 3) {
             System.out.println("\nVira - " + getVira().getValor() + " " + getVira().getNaipe());
-            jogador.get(0).verCartasJogador();
-            Scanner ler = new Scanner(System.in);
-            int suaJogada = ler.nextInt();
-            jogador.get(0).jogada(suaJogada);
-            jogador.get(1).jogada(jogador.get(1).gerarJogada());
-            jogador.get(1).visualCartaJogada();
-            jogador.get(3).jogada(jogador.get(3).gerarJogada());
-            jogador.get(3).visualCartaJogada();
-            jogador.get(2).jogada(jogador.get(2).gerarJogada());
-            jogador.get(2).visualCartaJogada();
             verificarGanhador();
             vencedorRodada();
             vencedorJogo();
@@ -62,7 +55,6 @@ public class Mesa {
     }
 
     public void verificarGanhador() {
-        Jogador vencedor = null;
         int valorMaior = -1;
         for (Jogador aJogador : jogador)
             if (Objects.equals(manilha.getValor(), aJogador.cartaJogada().getValor())) {
@@ -103,8 +95,6 @@ public class Mesa {
         if (jogador.get(1).getTime().getPlacarGeral() == 12) {
             System.out.println("\n VENCEDOR JOGO - " + jogador.get(0).getTime().getNome());
         }
-
-
     }
 
     public void proximaRodada() {
@@ -121,5 +111,13 @@ public class Mesa {
 
     public Carta getVira() {
         return vira;
+    }
+
+    public void ordemJogadas() {
+        for (Jogador aJogador : jogador) {
+            if (Objects.equals(aJogador, vencedor)) {
+
+            }
+        }
     }
 }

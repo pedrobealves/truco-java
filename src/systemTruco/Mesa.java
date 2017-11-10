@@ -16,8 +16,6 @@ public class Mesa {
     private int valorTruco = 1;
     private boolean acabar = false;
     private boolean[] empate = new boolean[3];
-    private IA ia = new IA(jogador);
-    ;
 
     public Mesa(ArrayList<Carta> baralho, ArrayList<Jogador> jogador) {
         this.baralho = baralho;
@@ -30,6 +28,7 @@ public class Mesa {
     public void iniciaJogo() {
         while (rodada < 3) {
             System.out.println("\nVira - " + getVira().getValor() + " " + getVira().getNaipe());
+            ordemJogadas();
             verificarGanhador();
             vencedorRodada();
             vencedorJogo();
@@ -114,9 +113,12 @@ public class Mesa {
     }
 
     public void ordemJogadas() {
-        for (Jogador aJogador : jogador) {
-            if (Objects.equals(aJogador, vencedor)) {
+        if (vencedor != null)
+            vencedor.gerarJogada();
 
+        for (Jogador aJogador : jogador) {
+            if (aJogador.getJogada() == null) {
+                aJogador.gerarJogada();
             }
         }
     }

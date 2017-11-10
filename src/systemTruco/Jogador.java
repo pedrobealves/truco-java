@@ -15,6 +15,7 @@ public class Jogador {
     private Carta jogada;
     private Time time;
     private boolean jogadorIA;
+    private IA ia;
 
     public Jogador(Time time) {
         this.time = time;
@@ -27,6 +28,11 @@ public class Jogador {
         Time time = new Time();
         this.time = time;
         this.nome = nome;
+    }
+
+    public void ativarIA() {
+        IA ia = new IA(this);
+        this.ia = ia;
     }
 
     public void visualCartaJogada() {
@@ -89,7 +95,7 @@ public class Jogador {
             Scanner ler = new Scanner(System.in);
             suaJogada = ler.nextInt();
         } else {
-
+            suaJogada = ia.gerarJogada(this);
         }
         jogada(suaJogada);
     }
@@ -102,4 +108,7 @@ public class Jogador {
         return cartasJogador;
     }
 
+    public Carta getJogada() {
+        return jogada;
+    }
 }

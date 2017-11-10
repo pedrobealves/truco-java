@@ -31,8 +31,7 @@ public class Jogador {
     }
 
     public void ativarIA() {
-        IA ia = new IA(this);
-        this.ia = ia;
+        IA ia = new IA();
     }
 
     public void visualCartaJogada() {

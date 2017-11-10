@@ -6,7 +6,7 @@ public class IA {
 
     private ArrayList<Jogador> jogador = new ArrayList<>();
 
-    public IA(Jogador jogador) {
+    public void ativarIA(Jogador jogador) {
         this.jogador.add(jogador);
     }
 

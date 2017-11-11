@@ -32,7 +32,15 @@ public class Jogador {
 
     public void ativarIA() {
         IA ia = new IA();
+        this.ia = ia;
+        this.ia.ativarIA(this);
     }
+
+    public void ativarIA(IA ia) {
+        this.ia = ia;
+        this.ia.ativarIA(this);
+    }
+
 
     public void visualCartaJogada() {
         System.out.println("\n" + nome + " " + time.getNome());
@@ -89,7 +97,7 @@ public class Jogador {
     public void gerarJogada() {
         int suaJogada = 0;
 
-        if (this.jogadorIA != true) {
+        if (!this.jogadorIA) {
             verCartasJogador();
             Scanner ler = new Scanner(System.in);
             suaJogada = ler.nextInt();
@@ -101,6 +109,10 @@ public class Jogador {
 
     public boolean isJogadorIA() {
         return jogadorIA;
+    }
+
+    public IA getIA() {
+        return ia;
     }
 
     public ArrayList<Carta> getCartasJogador() {

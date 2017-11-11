@@ -6,11 +6,11 @@ import java.util.*;
 
 public class Jogo {
 
-    private ArrayList<Carta> baralho = new ArrayList<Carta>();
+    private ArrayList<Carta> baralho = new ArrayList<>();
     private Random randomico = new Random();
     private Carta manilha;
     private Carta vira;
-    private ArrayList<Jogador> jogador = new ArrayList<Jogador>();
+    private ArrayList<Jogador> jogador = new ArrayList<>();
 
     public Jogo() {
         this.criaBaralho();
@@ -58,7 +58,17 @@ public class Jogo {
                 jogador.add(jogadorIA);
             }
         }
+        ativarIA();
+    }
 
+    public void ativarIA() {
+
+        jogador.get(0).ativarIA();
+        for (Jogador aJogador : jogador) {
+            if (aJogador.getIA() == null) {
+                aJogador.ativarIA(jogador.get(0).getIA());
+            }
+        }
     }
 
     public ArrayList<Jogador> getJogador() {

@@ -119,6 +119,9 @@ public class Mesa {
         for (Jogador aJogador : jogador) {
             if (aJogador.getJogada() == null) {
                 aJogador.gerarJogada();
+                aJogador.visualCartaJogada();
+                //  verificarGanhador();
+                //  aJogador.getIA().setVencedorTemp(this.vencedor);
             }
         }
     }

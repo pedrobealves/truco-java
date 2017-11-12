@@ -21,6 +21,7 @@ public class Mesa {
         this.baralho = baralho;
         this.jogador = jogador;
         rodada = 0;
+        vencedor = jogador.get(0);
         manilha();
         distribuirCartas();
     }
@@ -30,10 +31,17 @@ public class Mesa {
             System.out.println("\nVira - " + getVira().getValor() + " " + getVira().getNaipe());
             ordemJogadas();
             verificarGanhador();
+            vencedorMao();
             vencedorRodada();
             vencedorJogo();
+            limparMesa();
             proximaRodada();
         }
+    }
+
+    private void limparMesa() {
+        for (Jogador aJogador : jogador)
+            aJogador.limparCartaJogada();
     }
 
     public void manilha() {
@@ -54,23 +62,33 @@ public class Mesa {
     }
 
     public void verificarGanhador() {
+
+        vencedor = null;
         int valorMaior = -1;
-        for (Jogador aJogador : jogador)
-            if (Objects.equals(manilha.getValor(), aJogador.cartaJogada().getValor())) {
-                if (aJogador.cartaJogada().getId() > valorMaior) {
-                    valorMaior = aJogador.cartaJogada().getId();
-                    vencedor = aJogador;
-                }
-            }
-        if (vencedor == null) {
-            vencedor = jogador.get(0);
-            for (Jogador bJogador : jogador) {
-                if ((bJogador.cartaJogada().getId() % 10 > vencedor.cartaJogada().getId() % 10) && (bJogador.getTime() != vencedor.getTime())) {
-                    vencedor = bJogador;
+        for (Jogador aJogador : jogador) {
+            if (aJogador.cartaJogada() != null) {
+                if (Objects.equals(manilha.getValor(), aJogador.cartaJogada().getValor())) {
+                    if (aJogador.cartaJogada().getId() > valorMaior) {
+                        valorMaior = aJogador.cartaJogada().getId();
+                        vencedor = aJogador;
+                    }
                 }
             }
         }
+        if (vencedor == null) {
+            vencedor = jogador.get(0);
+            for (Jogador bJogador : jogador) {
+                if (bJogador.cartaJogada() != null) {
+                    if ((bJogador.cartaJogada().getId() % 10 > vencedor.cartaJogada().getId() % 10) && (bJogador.getTime() != vencedor.getTime())) {
+                        vencedor = bJogador;
+                    }
+                }
+            }
+        }
+    }
 
+    public void vencedorMao() {
+        System.out.println("\nMaior carta - " + vencedor.cartaJogada().getValor() + " " + vencedor.cartaJogada().getNaipe());
         vencedor.getTime().setPlacarRodada();
     }
 
@@ -113,15 +131,15 @@ public class Mesa {
     }
 
     public void ordemJogadas() {
-        if (vencedor != null)
-            vencedor.gerarJogada();
+        vencedor.gerarJogada();
+        vencedor.visualCartaJogada();
 
         for (Jogador aJogador : jogador) {
             if (aJogador.getJogada() == null) {
                 aJogador.gerarJogada();
                 aJogador.visualCartaJogada();
-                //  verificarGanhador();
-                //  aJogador.getIA().setVencedorTemp(this.vencedor);
+                verificarGanhador();
+                aJogador.getIA().setVencedorTemp(this.vencedor);
             }
         }
     }

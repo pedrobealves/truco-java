@@ -122,4 +122,8 @@ public class Jogador {
     public Carta getJogada() {
         return jogada;
     }
+
+    public void limparCartaJogada() {
+        jogada = null;
+    }
 }

@@ -13,9 +13,10 @@ public class IA {
 
     public int gerarJogada(Jogador vezJogador) {
 
-       /* if (vencedorTemp.getTime() == vezJogador.getTime()) {
-            return menorCarta(vezJogador);
-        }*/
+        if (vencedorTemp != null) {
+            if (vencedorTemp.getTime() == vezJogador.getTime())
+                return menorCarta(vezJogador);
+        }
 
         for (Jogador aJogador : jogador) {
             if ((aJogador.cartaJogada() != null) && (aJogador.getTime() != vezJogador.getTime())) {

@@ -131,6 +131,7 @@ public class Mesa {
     }
 
     public void ordemJogadas() {
+        vencedor.getIA().setManilha(manilha);
         vencedor.gerarJogada();
         vencedor.visualCartaJogada();
 

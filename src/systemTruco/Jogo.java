@@ -2,6 +2,7 @@ package systemTruco;
 
 import com.sun.org.apache.xpath.internal.SourceTree;
 
+import javax.swing.*;
 import java.util.*;
 
 public class Jogo {
@@ -35,10 +36,8 @@ public class Jogo {
 
     private void criaJogadores(int numeroJogadores) {
 
-        System.out.println("Digite seu nome: ");
         int timeAdversarioIA;
-        Scanner ler = new Scanner(System.in);
-        String nomeJogador = ler.next();
+        String nomeJogador = JOptionPane.showInputDialog("DIGITE SEU NOME ");
 
         Jogador jogador1 = new Jogador(nomeJogador);
 

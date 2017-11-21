@@ -1,12 +1,16 @@
 package systemTruco;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class Carta {
-    private boolean verso;
+    private boolean verso = true;
     private String valor;
     private String naipe;
     private static int cont = 0;
     private int id;
-
+    private final static String caminhoImg = "src/resources/cartas/";
+    private ImageIcon imagem = new ImageIcon(caminhoImg + "fundov.png");
     public Carta(int valor, int naipe) {
 
         this.id = cont++;
@@ -74,6 +78,8 @@ public class Carta {
 
     public void virar() {
         this.verso = !this.verso;
+        ImageIcon icon = new ImageIcon(caminhoImg + getId() + ".png");
+        this.imagem = icon;
     }
 
     public int getId() {
@@ -84,4 +90,7 @@ public class Carta {
         this.id = id;
     }
 
+    public ImageIcon getImagem() {
+        return imagem;
+    }
 }

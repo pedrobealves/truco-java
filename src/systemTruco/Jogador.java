@@ -24,7 +24,6 @@ public class Jogador {
     }
 
     public Jogador(String nome) {
-        System.out.println("Digite seu time: ");
         Time time = new Time();
         this.time = time;
         this.nome = nome;
@@ -66,6 +65,13 @@ public class Jogador {
     public void distribuiCartas(ArrayList<Carta> c) {
         for (int i = 0; i < 3; i++)
             cartasJogador.add(c.remove(i));
+        if (!isJogadorIA())
+            virarCartasJogador();
+    }
+
+    public void virarCartasJogador() {
+        for (int i = 0; i < 3; i++)
+            cartasJogador.get(i).virar();
     }
 
     public String getNome() {
@@ -73,8 +79,9 @@ public class Jogador {
     }
 
     public void jogada(int suaJogada) {
-        this.jogada = cartasJogador.get(suaJogada - 1);
+        jogada = cartasJogador.get(suaJogada - 1);
         cartasJogador.remove(suaJogada - 1);
+        jogada.virar();
     }
 
     public Carta cartaJogada() {
@@ -95,16 +102,16 @@ public class Jogador {
     }
 
     public void gerarJogada() {
-        int suaJogada = 0;
+        int suaJogada = 1;
 
         if (!this.jogadorIA) {
-            verCartasJogador();
+            /*verCartasJogador();
             Scanner ler = new Scanner(System.in);
-            suaJogada = ler.nextInt();
+            suaJogada = ler.nextInt();*/
         } else {
             suaJogada = ia.gerarJogada(this);
+            jogada(suaJogada);
         }
-        jogada(suaJogada);
     }
 
     public boolean isJogadorIA() {
@@ -126,4 +133,5 @@ public class Jogador {
     public void limparCartaJogada() {
         jogada = null;
     }
+
 }

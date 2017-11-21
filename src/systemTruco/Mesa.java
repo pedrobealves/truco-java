@@ -27,7 +27,7 @@ public class Mesa {
     }
 
     public void iniciaJogo() {
-        while (rodada < 3) {
+       /* while (rodada < 3) {
             System.out.println("\nVira - " + getVira().getValor() + " " + getVira().getNaipe());
             ordemJogadas();
             verificarGanhador();
@@ -36,10 +36,10 @@ public class Mesa {
             vencedorJogo();
             limparMesa();
             proximaRodada();
-        }
+        }*/
     }
 
-    private void limparMesa() {
+    public void limparMesa() {
         for (Jogador aJogador : jogador)
             aJogador.limparCartaJogada();
     }
@@ -130,18 +130,15 @@ public class Mesa {
         return vira;
     }
 
-    public void ordemJogadas() {
-        vencedor.getIA().setManilha(manilha);
-        vencedor.gerarJogada();
-        vencedor.visualCartaJogada();
+    public ArrayList<Jogador> getJogador() {
+        return jogador;
+    }
 
-        for (Jogador aJogador : jogador) {
-            if (aJogador.getJogada() == null) {
-                aJogador.gerarJogada();
-                aJogador.visualCartaJogada();
-                verificarGanhador();
-                aJogador.getIA().setVencedorTemp(this.vencedor);
-            }
-        }
+    public Carta getManilha() {
+        return manilha;
+    }
+
+    public Jogador getVencedor() {
+        return vencedor;
     }
 }

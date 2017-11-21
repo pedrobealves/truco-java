@@ -1,6 +1,6 @@
 package systemTruco;
 
-import java.util.Scanner;
+import javax.swing.*;
 
 public class Time {
     private timesNomes nome;
@@ -41,14 +41,18 @@ public class Time {
 
 
     public int exibir() {
-        int i = 0;
-        for (timesNomes p : timesNomes.values()) {
-            System.out.println((i + 1) + " " + p.name());
-            i++;
-        }
-        Scanner ler = new Scanner(System.in);
-        int time = ler.nextInt();
+
+        String[] opcoes = {"VERMELHO", "AZUL", "VERDE", "AMARELO", "CIANO", "ROXO", "BRANCO"};
+
+        String resposta = (String) JOptionPane.showInputDialog(null,
+                "Em que número estou pensando?", "Jogo de Advinhar",
+                JOptionPane.QUESTION_MESSAGE, null, opcoes, null);
+
+        int time = timesNomes.valueOf(resposta).codigo;
         return time;
+    }
+
+    public void retonarValorTimes() {
     }
 
     public timesNomes getNome() {

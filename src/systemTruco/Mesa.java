@@ -141,4 +141,8 @@ public class Mesa {
     public Jogador getVencedor() {
         return vencedor;
     }
+
+    public int getRodada() {
+        return rodada;
+    }
 }

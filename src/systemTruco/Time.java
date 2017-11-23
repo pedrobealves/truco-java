@@ -45,7 +45,7 @@ public class Time {
         String[] opcoes = {"VERMELHO", "AZUL", "VERDE", "AMARELO", "CIANO", "ROXO", "BRANCO"};
 
         String resposta = (String) JOptionPane.showInputDialog(null,
-                "Em que número estou pensando?", "Jogo de Advinhar",
+                "Selecione seu time", "TIME",
                 JOptionPane.QUESTION_MESSAGE, null, opcoes, null);
 
         int time = timesNomes.valueOf(resposta).codigo;

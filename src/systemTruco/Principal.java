@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import static java.lang.Thread.sleep;
+
 public class Principal extends JFrame {
 
     private Jogo jogo;
@@ -121,17 +123,22 @@ public class Principal extends JFrame {
         vira.setIcon(mesa.getVira().getImagem());
         vira.setBorder(null);
 
-        /*while (mesa.getRodada()<3) {
+        while (mesa.getRodada() < 3) {
             ordemJogadas();
-        }*/
+            mesa.verificarGanhador();
+            mesa.vencedorMao();
+            mesa.vencedorRodada();
+            mesa.vencedorJogo();
+            mesa.limparMesa();
+            mesa.proximaRodada();
+        }
     }
 
     public void ordemJogadas() {
-        /*clique = false;
+        clique = false;
         if (!mesa.vencedor.isJogadorIA())
             JOptionPane.showMessageDialog(null, "Faça sua jogada");
-        while (!clique) {
-        }
+
         mesa.vencedor.getIA().setManilha(mesa.getManilha());
         mesa.vencedor.gerarJogada();
         mesa.vencedor.visualCartaJogada();
@@ -140,7 +147,6 @@ public class Principal extends JFrame {
             if (aJogador.getJogada() == null) {
                 if (!aJogador.isJogadorIA())
                     JOptionPane.showMessageDialog(null, "Faça sua jogada");
-                while (!clique);
                 aJogador.gerarJogada();
                 aJogador.cartaJogada().virar();
                 aJogador.visualCartaJogada();
@@ -155,7 +161,7 @@ public class Principal extends JFrame {
         cartaJogador3.setIcon(mesa.getJogador().get(2).cartaJogada().getImagem());
         cartaJogador3.setBorder(null);
         cartaJogador4.setIcon(mesa.getJogador().get(3).cartaJogada().getImagem());
-        cartaJogador4.setBorder(null);*/
+        cartaJogador4.setBorder(null);
     }
 
     private class Eventos implements ActionListener {
@@ -166,10 +172,6 @@ public class Principal extends JFrame {
 
             if (b.getParent() == panelJogador1) {
 
-                clique = false;
-                if (!mesa.vencedor.isJogadorIA())
-                    JOptionPane.showMessageDialog(null, "Faça sua jogada");
-                while (!clique) {
                     if (b == buttons[0][0]) {
                         mesa.getJogador().get(0).jogada(1);
                     }
@@ -179,51 +181,18 @@ public class Principal extends JFrame {
                     if (b == buttons[0][2]) {
                         mesa.getJogador().get(0).jogada(3);
                     }
-                    clique = true;
                 }
-                mesa.vencedor.getIA().setManilha(mesa.getManilha());
-                mesa.vencedor.gerarJogada();
-                mesa.vencedor.visualCartaJogada();
-
-                for (Jogador aJogador : mesa.getJogador()) {
-                    if (aJogador.getJogada() == null) {
-                        if (!aJogador.isJogadorIA())
-                            JOptionPane.showMessageDialog(null, "Faça sua jogada");
-                        while (!clique) ;
-                        aJogador.gerarJogada();
-                        aJogador.cartaJogada().virar();
-                        aJogador.visualCartaJogada();
-                        mesa.verificarGanhador();
-                        aJogador.getIA().setVencedorTemp(mesa.vencedor);
-                    }
-                }
-                cartaJogador1.setIcon(mesa.getJogador().get(0).cartaJogada().getImagem());
-                cartaJogador1.setBorder(null);
-                cartaJogador2.setIcon(mesa.getJogador().get(1).cartaJogada().getImagem());
-                cartaJogador2.setBorder(null);
-                cartaJogador3.setIcon(mesa.getJogador().get(2).cartaJogada().getImagem());
-                cartaJogador3.setBorder(null);
-                cartaJogador4.setIcon(mesa.getJogador().get(3).cartaJogada().getImagem());
-                cartaJogador4.setBorder(null);
-                mesa.verificarGanhador();
-                mesa.vencedorMao();
-                mesa.vencedorRodada();
-                mesa.vencedorJogo();
-                mesa.limparMesa();
-                mesa.proximaRodada();
-            }
         }
-
     }
 
     public static void main(String[] args) {
 
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
+        //java.awt.EventQueue.invokeLater(new Runnable() {
+        // @Override
+        //  public void run() {
                 new Principal();
-            }
-        });
+        //   }
+        // });
     }
 
     private void createUIComponents() {

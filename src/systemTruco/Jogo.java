@@ -13,10 +13,10 @@ public class Jogo {
     private Carta vira;
     private ArrayList<Jogador> jogador = new ArrayList<>();
 
-    public Jogo() {
+    public Jogo(String playerNome, int numeroJogadores) {
         this.criaBaralho();
         this.embaralhaCartas();
-        this.criaJogadores(4);
+        this.criaJogadores(playerNome, numeroJogadores);
     }
 
     public void criaBaralho() {
@@ -34,17 +34,16 @@ public class Jogo {
         Collections.shuffle(baralho, this.randomico);
     }
 
-    private void criaJogadores(int numeroJogadores) {
+    private void criaJogadores(String playerNome, int numeroJogadores) {
 
         int timeAdversarioIA;
-        String nomeJogador = JOptionPane.showInputDialog("DIGITE SEU NOME ");
 
-        Jogador jogador1 = new Jogador(nomeJogador);
+        Jogador jogador1 = new Jogador(playerNome);
 
         jogador.add(jogador1);
 
         do {
-            timeAdversarioIA = randomico.nextInt(7) + 1;
+            timeAdversarioIA = randomico.nextInt(6) + 1;
         } while (timeAdversarioIA == jogador.get(0).getTime().getNome().codigo());
 
         Time timeIA = new Time(timeAdversarioIA);

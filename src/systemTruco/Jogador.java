@@ -114,6 +114,10 @@ public class Jogador {
         }
     }
 
+    public void setJogada(Carta jogada) {
+        this.jogada = jogada;
+    }
+
     public boolean isJogadorIA() {
         return jogadorIA;
     }

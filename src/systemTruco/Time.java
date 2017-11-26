@@ -1,6 +1,7 @@
 package systemTruco;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Time {
     private timesNomes nome;
@@ -8,7 +9,7 @@ public class Time {
     static private int placarGeral;
 
     public static enum timesNomes {
-        VERMELHO(1), AZUL(2), VERDE(3), AMARELO(4), CIANO(5), ROXO(6), BRANCO(7);
+        VERMELHO(1), AZUL(2), VERDE(3), AMARELO(4), CIANO(5), ROXO(6);
         private final int codigo;
 
         timesNomes(int codigo) {
@@ -42,7 +43,7 @@ public class Time {
 
     public int exibir() {
 
-        String[] opcoes = {"VERMELHO", "AZUL", "VERDE", "AMARELO", "CIANO", "ROXO", "BRANCO"};
+        String[] opcoes = {"VERMELHO", "AZUL", "VERDE", "AMARELO", "CIANO", "ROXO"};
 
         String resposta = (String) JOptionPane.showInputDialog(null,
                 "Selecione seu time", "TIME",
@@ -78,4 +79,24 @@ public class Time {
     public void setPlacarGeral(int valorTruco) {
         this.placarGeral += valorTruco;
     }
+
+    public Color coresTimes(Jogador j) {
+        Color cor = new Color(0x000000);
+        switch (j.getTime().nome.codigo) {
+            case 1:
+                return cor = new Color(0x990000);
+            case 2:
+                return cor = new Color(0x1f1f7a);
+            case 3:
+                return cor = new Color(0x006622);
+            case 4:
+                return cor = new Color(0xD1CD45);
+            case 5:
+                return cor = new Color(0x778081);
+            case 6:
+                return cor = new Color(0x8B3F80);
+        }
+        return cor;
+    }
+
 }

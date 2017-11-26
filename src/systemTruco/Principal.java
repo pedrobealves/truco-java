@@ -49,7 +49,7 @@ public class Principal extends JFrame {
     public void iniciaJogo() {
         inicializaButtons();
         adicionaComponentes();
-        jogo = new Jogo();
+        //jogo = new Jogo();
         boolean acabar = false;
             mesa = new Mesa(jogo.getBaralho(), jogo.getJogador());
             iniciaComponentes();

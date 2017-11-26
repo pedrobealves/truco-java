@@ -90,6 +90,11 @@ public class Carta {
         this.id = id;
     }
 
+    public ImageIcon vira() {
+        ImageIcon icon = new ImageIcon(caminhoImg + getId() + ".png");
+        return icon;
+    }
+
     public ImageIcon getImagem() {
         return imagem;
     }

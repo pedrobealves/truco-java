@@ -16,6 +16,7 @@ public class Mesa {
     private int valorTruco = 1;
     private boolean acabar = false;
     private boolean[] empate = new boolean[3];
+    private Time vencedorJogo;
 
     public Mesa(ArrayList<Carta> baralho, ArrayList<Jogador> jogador) {
         this.baralho = baralho;
@@ -107,11 +108,35 @@ public class Mesa {
 
     public void vencedorJogo() {
         if (jogador.get(0).getTime().getPlacarGeral() == 12) {
-            System.out.println("\n VENCEDOR JOGO - " + jogador.get(0).getTime().getNome());
+            vencedorJogo = jogador.get(0).getTime();
+            setAcabar();
         }
         if (jogador.get(1).getTime().getPlacarGeral() == 12) {
-            System.out.println("\n VENCEDOR JOGO - " + jogador.get(0).getTime().getNome());
+            vencedorJogo = jogador.get(0).getTime();
+            setAcabar();
         }
+    }
+
+    public void ordemJogadas() {
+        if (!vencedor.isJogadorIA()) {
+            vencedor.getIA().setManilha(getManilha());
+            vencedor.gerarJogada();
+            vencedor.visualCartaJogada();
+        }
+
+        for (Jogador aJogador : jogador) {
+            if (aJogador.getJogada() == null) {
+                aJogador.gerarJogada();
+                aJogador.cartaJogada().virar();
+                aJogador.visualCartaJogada();
+                verificarGanhador();
+                aJogador.getIA().setVencedorTemp(vencedor);
+            }
+        }
+    }
+
+    public Time getVencedorJogo() {
+        return vencedorJogo;
     }
 
     public void proximaRodada() {
@@ -122,8 +147,8 @@ public class Mesa {
         return acabar;
     }
 
-    public void setAcabar(boolean acabar) {
-        this.acabar = acabar;
+    public void setAcabar() {
+        this.acabar = true;
     }
 
     public Carta getVira() {

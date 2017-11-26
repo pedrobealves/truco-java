@@ -58,6 +58,8 @@ public class Controle implements ActionListener, MouseListener {
         }
 
         gui.setVira(mesa.getVira());
+        gui.setValorPlacar(mesa.getValorTruco());
+        gui.setValorRodada(mesa.getRodada() + 1);
 
         gui.getSp1().remove(gui.getMaop1());
         gui.getPanelP1().remove(gui.getSp1());

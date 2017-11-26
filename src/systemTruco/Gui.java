@@ -30,6 +30,9 @@ public class Gui extends JFrame {
     private JScrollPane sp3;
     private JScrollPane sp4;
     private JButton vira;
+    private JLabel placar;
+    private JLabel valorPlacar;
+    private JLabel valorRodada;
 
     public Gui(String playerNome, int numeroJogadores) throws IOException {
         super("SystemTRUCO");
@@ -132,15 +135,29 @@ public class Gui extends JFrame {
 
         rodada = new Rodada("Acabar Jogada");
         vira = new JButton();
+        ImageIcon imagePlacar = new ImageIcon("src/resources/placar.png");
+        Image imagePlacarR = imagePlacar.getImage().getScaledInstance(331, 129, Image.SCALE_SMOOTH);
+        imagePlacar = new ImageIcon(imagePlacarR);
+        placar = new JLabel(imagePlacar);
+        valorPlacar = new JLabel("0");
+        valorPlacar.setFont(new Font("Century Gothic", Font.BOLD, 25));
+        valorRodada = new JLabel("0");
+        valorRodada.setFont(new Font("Century Gothic", Font.BOLD, 25));
         panelPrincipal = new JPanel();
         panelPrincipal.setOpaque(false);
         panelPrincipal.setLayout(null);
         panelPrincipal.add(rodada);
         panelPrincipal.add(vira);
+        panelPrincipal.add(valorRodada);
+        panelPrincipal.add(valorPlacar);
+        panelPrincipal.add(placar);
         this.add(panelPrincipal);
         panelPrincipal.setBounds(0, 0, 1300, 800);
         rodada.setBounds(5, 680, 157, 39);
         vira.setBounds(1200, 600, 80, 116);
+        placar.setBounds(0, 0, 400, 150);
+        valorPlacar.setBounds(95, 85, 20, 20);
+        valorRodada.setBounds(250, 85, 20, 20);
 
         this.add(panelP1);
         panelP1.setBounds(300, 430, 700, 300);
@@ -155,6 +172,14 @@ public class Gui extends JFrame {
         this.validate();
         new Controle(jogo, this, mesa);
 
+    }
+
+    public void setValorPlacar(int valorPlacar) {
+        this.valorPlacar.setText(String.valueOf(valorPlacar));
+    }
+
+    public void setValorRodada(int valorRodada) {
+        this.valorRodada.setText(String.valueOf(valorRodada));
     }
 
     public JButton getVira() {

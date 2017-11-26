@@ -133,6 +133,7 @@ public class Mesa {
                 aJogador.getIA().setVencedorTemp(vencedor);
             }
         }
+        proximaRodada();
     }
 
     public Time getVencedorJogo() {
@@ -169,5 +170,13 @@ public class Mesa {
 
     public int getRodada() {
         return rodada;
+    }
+
+    public int getValorTruco() {
+        return valorTruco;
+    }
+
+    public void setValorTruco(int valorTruco) {
+        this.valorTruco = valorTruco;
     }
 }

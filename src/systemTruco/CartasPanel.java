@@ -47,34 +47,6 @@ public class CartasPanel extends JPanel {
                 cartabuttons.get(i).repaint();
             }
         }
-        //monsterbuttons.add(mb);
-        //this.add(mb);
-       /*setPreferredSize(new Dimension(500, 100));
-        cartas = new CartaButton();
-        this.setLayout(new GridLayout(1,1));
-        this.setOpaque(true);
-        this.setVisible(true);
-        CartaButton cartabutton = new CartaButton();
-        cartas.add(cartabutton);
-        cartabutton.setBackground(Color.GRAY);
-        cartabutton.setOpaque(false);
-        this.add(cartabutton);
-        //if (j.getJogada()!=null) {
-        //cartas.setCarta(j.getJogada());
-        cartas.setCarta(j.getCartasJogador().get(0));
-        cartas.setVisible(true);
-        ImageIcon newIcon;
-        //ImageIcon img = new ImageIcon(j.getJogada().getImagem().getImage());
-        ImageIcon img = new ImageIcon(j.getCartasJogador().get(0).getImagem().getImage());
-        Image img2 = img.getImage();
-        Image newimg = img2.getScaledInstance(62, 91, java.awt.Image.SCALE_SMOOTH);
-        newIcon = new ImageIcon(newimg);
-        cartas.setIcon(newIcon);
-        cartas.setPreferredSize(new Dimension(62, 91));
-        cartas.revalidate();
-        cartas.setOpaque(false);
-        cartas.repaint();*/
-        //}
     }
 
     public ArrayList<CartaButton> getCartas() {

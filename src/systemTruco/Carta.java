@@ -7,7 +7,7 @@ public class Carta {
     private boolean verso = true;
     private String valor;
     private String naipe;
-    private static int cont = 0;
+    public static int cont = 0;
     private int id;
     private final static String caminhoImg = "src/resources/cartas/";
     private ImageIcon imagem = new ImageIcon(caminhoImg + "fundov.png");

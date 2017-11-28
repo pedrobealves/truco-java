@@ -20,13 +20,17 @@ public class Jogo {
     }
 
     public void criaBaralho() {
-
         for (int n = 0; n < 4; n++) {
             for (int f = 0; f < 10; f++) {
                 Carta ca = new Carta(f, n);
                 this.baralho.add(ca);
             }
         }
+    }
+
+    public void criaNovoBaralho() {
+        baralho.clear();
+        criaBaralho();
     }
 
     public void embaralhaCartas() {
@@ -46,6 +50,12 @@ public class Jogo {
             timeAdversarioIA = randomico.nextInt(6) + 1;
         } while (timeAdversarioIA == jogador.get(0).getTime().getNome().codigo());
 
+        /*Jogador jogadorIA = new Jogador(timeIA);
+        jogador.add(jogadorIA);
+        Jogador jogadorIA2 = new Jogador(jogador.get(0).getTime());
+        jogador.add(jogadorIA2);
+        Jogador jogadorIA3 = new Jogador(timeIA);
+        jogador.add(jogadorIA3);*/
         Time timeIA = new Time(timeAdversarioIA);
         for (int i = 1; i < numeroJogadores; i++) {
             if (i < 3) {

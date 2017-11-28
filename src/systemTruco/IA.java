@@ -88,6 +88,10 @@ public class IA {
 
     }
 
+    public Jogador getVencedorTemp() {
+        return vencedorTemp;
+    }
+
     public void setManilha(Carta manilha) {
         this.manilha = manilha;
     }

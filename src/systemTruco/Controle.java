@@ -8,12 +8,14 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Controle implements ActionListener, MouseListener {
 
     private Gui gui;
     private Jogo jogo;
     private Mesa mesa;
+    private boolean c_rodada;
 
 
     public Controle(Jogo jogo, Gui gui, Mesa mesa) {
@@ -22,6 +24,7 @@ public class Controle implements ActionListener, MouseListener {
         this.mesa = mesa;
         addActionListeners();
         gui.getRodada().addActionListener(this);
+        gui.getTruco().addActionListener(this);
         updatefield();
     }
 
@@ -57,9 +60,10 @@ public class Controle implements ActionListener, MouseListener {
             }
         }
 
+        c_rodada = false;
         gui.setVira(mesa.getVira());
         gui.setValorPlacar(mesa.getValorTruco());
-        gui.setValorRodada(mesa.getRodada() + 1);
+        gui.setValorRodada(mesa.getRodada());
 
         gui.getSp1().remove(gui.getMaop1());
         gui.getPanelP1().remove(gui.getSp1());
@@ -117,7 +121,6 @@ public class Controle implements ActionListener, MouseListener {
         gui.getPanelP4().add(gui.getSp4(), BorderLayout.EAST);
         gui.revalidate();
 
-
         if (jogo.getJogador().get(0).getJogada() != null) {
             if (gui.getCartasPanel1() != null)
                 gui.getPanelP1().remove(gui.getCartasPanel1());
@@ -125,40 +128,26 @@ public class Controle implements ActionListener, MouseListener {
             gui.getPanelP1().add(gui.getCartasPanel1(), BorderLayout.NORTH);
         }
 
-        if (jogo.getJogador().get(3).getJogada() != null) {
+        if (jogo.getJogador().get(2).getJogada() != null) {
             if (gui.getCartasPanel2() != null)
                 gui.getPanelP2().remove(gui.getCartasPanel2());
-            gui.setCartasPanel2(new CartasPanel(jogo.getJogador().get(3)));
+            gui.setCartasPanel2(new CartasPanel(jogo.getJogador().get(2)));
             gui.getPanelP2().add(gui.getCartasPanel2(), BorderLayout.SOUTH);
         }
 
-        if (jogo.getJogador().get(2).getJogada() != null) {
+        if (jogo.getJogador().get(1).getJogada() != null) {
             if (gui.getCartasPanel3() != null)
                 gui.getPanelP3().remove(gui.getCartasPanel3());
-            gui.setCartasPanel3(new CartasPanel(jogo.getJogador().get(2)));
+            gui.setCartasPanel3(new CartasPanel(jogo.getJogador().get(1)));
             gui.getPanelP3().add(gui.getCartasPanel3(), BorderLayout.SOUTH);
         }
 
-        if (jogo.getJogador().get(1).getJogada() != null) {
+        if (jogo.getJogador().get(3).getJogada() != null) {
             if (gui.getCartasPanel4() != null)
                 gui.getPanelP4().remove(gui.getCartasPanel4());
-            gui.setCartasPanel4(new CartasPanel(jogo.getJogador().get(1)));
+            gui.setCartasPanel4(new CartasPanel(jogo.getJogador().get(3)));
             gui.getPanelP4().add(gui.getCartasPanel4(), BorderLayout.SOUTH);
         }
-
-       /* if (gui.getP1().getField().getGraveyard().size() > 0) {
-            String url;
-            if (gui.getP1().getField().getGraveyard().get(gui.getP1().getField().getGraveyard().size() - 1) instanceof MonsterCard) {
-                url = "Cards Images Database/Monsters/" + gui.getP1().getField().getGraveyard().get(gui.getP1().getField().getGraveyard().size() - 1).getName() + ".png";
-            } else {
-                url = "Cards Images Database/Spells/" + gui.getP1().getField().getGraveyard().get(gui.getP1().getField().getGraveyard().size() - 1).getName() + ".png";
-            }
-            ImageIcon img = new ImageIcon(url);
-            Image img2 = img.getImage();
-            Image newimg = img2.getScaledInstance(62, 91, java.awt.Image.SCALE_SMOOTH);
-            ImageIcon newIcon = new ImageIcon(newimg);
-            gui.getGravep1().setIcon(newIcon);
-        }*/
 
         addActionListeners();
         gui.revalidate();
@@ -167,8 +156,24 @@ public class Controle implements ActionListener, MouseListener {
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
-        if (arg0.getSource() instanceof Rodada) {
+        /*if (arg0.getSource() instanceof Rodada && !c_rodada) {
+            mesa.ordemJogadasA();
             updatefield();
+            c_rodada = true;
+            mesa.proximaRodada();
+        }*/
+
+        if (arg0.getSource() == gui.getTruco()) {
+            if (Objects.equals(jogo.getJogador().get(1).getIA().getVencedorTemp().getTime(), jogo.getJogador().get(0).getTime())) {
+                JOptionPane.showMessageDialog(null, "Seu truco não foi aceito ");
+                //mesa.setRodadaR(4);
+            } else {
+                JOptionPane.showMessageDialog(null, "Seu truco foi aceito ");
+                if (mesa.getValorTruco() == 1)
+                    mesa.setValorTruco();
+                else
+                    mesa.setValorTruco();
+            }
         }
         if (arg0.getSource() instanceof CartaButton) {
             mesa.limparMesa();
@@ -176,7 +181,19 @@ public class Controle implements ActionListener, MouseListener {
             jogo.getJogador().get(0).setJogada(carta);
             jogo.getJogador().get(0).getCartasJogador().remove(carta);
             mesa.ordemJogadas();
+            mesa.proximaRodada();
+            mesa.vencedorRodada();
+            mesa.vencedorJogo();
             updatefield();
+            mesa.limparMesa();
+            if (mesa.getRodada() >= 3) {
+                mesa.setRodada();
+                Carta.cont = 0;
+                jogo.criaNovoBaralho();
+                jogo.embaralhaCartas();
+                mesa = new Mesa(jogo.getBaralho(), jogo.getJogador());
+                updatefield();
+            }
             return;
         }
 

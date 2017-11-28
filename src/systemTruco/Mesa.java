@@ -94,38 +94,38 @@ public class Mesa {
     }
 
     public void vencedorRodada() {
-        if (rodada == 2) {
             if (jogador.get(0).getTime().getPlacarRodada() > jogador.get(1).getTime().getPlacarRodada()) {
                 System.out.println("\n VENCEDOR RODADA - " + jogador.get(0).getTime().getNome());
+                jogador.get(0).getTime().setPlacarGeral(valorTruco);
             } else {
                 System.out.println("\n VENCEDOR RODADA - " + jogador.get(1).getTime().getNome());
+                jogador.get(1).getTime().setPlacarGeral(valorTruco);
+
             }
-        }
+        jogador.get(0).getTime().zerarRodada();
         jogador.get(1).getTime().zerarRodada();
-        jogador.get(2).getTime().zerarRodada();
 
     }
 
     public void vencedorJogo() {
-        if (jogador.get(0).getTime().getPlacarGeral() == 12) {
+        if (jogador.get(0).getTime().getPlacarGeral() >= 12) {
             vencedorJogo = jogador.get(0).getTime();
             setAcabar();
         }
-        if (jogador.get(1).getTime().getPlacarGeral() == 12) {
+        if (jogador.get(1).getTime().getPlacarGeral() >= 12) {
             vencedorJogo = jogador.get(0).getTime();
             setAcabar();
         }
     }
 
     public void ordemJogadas() {
-        if (!vencedor.isJogadorIA()) {
+        /*if (vencedor.isJogadorIA()) {
             vencedor.getIA().setManilha(getManilha());
             vencedor.gerarJogada();
-            vencedor.visualCartaJogada();
-        }
-
+            vencedor.visualCartaJogada();}*/
         for (Jogador aJogador : jogador) {
             if (aJogador.getJogada() == null) {
+                aJogador.getIA().setManilha(getManilha());
                 aJogador.gerarJogada();
                 aJogador.cartaJogada().virar();
                 aJogador.visualCartaJogada();
@@ -133,7 +133,23 @@ public class Mesa {
                 aJogador.getIA().setVencedorTemp(vencedor);
             }
         }
-        proximaRodada();
+    }
+
+    public void ordemJogadasA() {
+        if (vencedor.isJogadorIA()) {
+            int i = vencedor.getId();
+            for (; i < 4; i++) {
+                jogador.get(i).gerarJogada();
+                jogador.get(i).cartaJogada().virar();
+                jogador.get(i).visualCartaJogada();
+                verificarGanhador();
+                jogador.get(i).getIA().setVencedorTemp(vencedor);
+            }
+        }
+    }
+
+    public void setRodada() {
+        this.rodada = 0;
     }
 
     public Time getVencedorJogo() {
@@ -176,7 +192,15 @@ public class Mesa {
         return valorTruco;
     }
 
-    public void setValorTruco(int valorTruco) {
-        this.valorTruco = valorTruco;
+    public void setValorTruco() {
+        this.valorTruco += 3;
+    }
+
+    public void setRodadaR(int v) {
+        this.rodada = v;
+    }
+
+    public void setValorTruco(int valor) {
+        this.valorTruco = valor;
     }
 }

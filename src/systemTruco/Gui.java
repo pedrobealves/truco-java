@@ -30,6 +30,7 @@ public class Gui extends JFrame {
     private JScrollPane sp3;
     private JScrollPane sp4;
     private JButton vira;
+    private JButton truco;
     private JLabel placar;
     private JLabel valorPlacar;
     private JLabel valorRodada;
@@ -57,6 +58,11 @@ public class Gui extends JFrame {
         this.setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         jogo = new Jogo(playerNome, numeroJogadores);
+        update();
+        new Controle(jogo, this, mesa);
+    }
+
+    public void update() {
         mesa = new Mesa(jogo.getBaralho(), jogo.getJogador());
 
         cartasPanel1 = new CartasPanel(jogo.getJogador().get(0));
@@ -133,7 +139,8 @@ public class Gui extends JFrame {
         //p1hid = new HiddenHandPanel(p1);
         //p2hid = new HiddenHandPanel(p2);
 
-        rodada = new Rodada("Acabar Jogada");
+        rodada = new Rodada("Próxima Rodada");
+        truco = new Rodada("Truco");
         vira = new JButton();
         ImageIcon imagePlacar = new ImageIcon("src/resources/placar.png");
         Image imagePlacarR = imagePlacar.getImage().getScaledInstance(331, 129, Image.SCALE_SMOOTH);
@@ -146,6 +153,7 @@ public class Gui extends JFrame {
         panelPrincipal = new JPanel();
         panelPrincipal.setOpaque(false);
         panelPrincipal.setLayout(null);
+        panelPrincipal.add(truco);
         panelPrincipal.add(rodada);
         panelPrincipal.add(vira);
         panelPrincipal.add(valorRodada);
@@ -153,7 +161,8 @@ public class Gui extends JFrame {
         panelPrincipal.add(placar);
         this.add(panelPrincipal);
         panelPrincipal.setBounds(0, 0, 1300, 800);
-        rodada.setBounds(5, 680, 157, 39);
+        truco.setBounds(5, 645, 157, 39);
+        rodada.setBounds(5, 690, 157, 39);
         vira.setBounds(1200, 600, 80, 116);
         placar.setBounds(0, 0, 400, 150);
         valorPlacar.setBounds(95, 85, 20, 20);
@@ -168,10 +177,7 @@ public class Gui extends JFrame {
         this.add(panelP4);
         panelP4.setBounds(500, 200, 700, 300);
 
-
         this.validate();
-        new Controle(jogo, this, mesa);
-
     }
 
     public void setValorPlacar(int valorPlacar) {
@@ -355,11 +361,19 @@ public class Gui extends JFrame {
         this.sp4 = sp4;
     }
 
+    public JButton getTruco() {
+        return truco;
+    }
+
+    public void setTruco(JButton truco) {
+        this.truco = truco;
+    }
+
     public static void main(String[] args) {
         JFrame start = new JFrame();
         start.setSize(1920, 1080);
         start.setVisible(true);
-        start.setContentPane(new JLabel(new ImageIcon("Start Game.png")));
+        start.setContentPane(new JLabel(new ImageIcon("src/resources/start.png")));
 
         start.revalidate();
         start.setLayout(null);
@@ -381,9 +395,9 @@ public class Gui extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (p1.getText().length() == 0 || !dupla.isSelected() && !quart.isSelected()) {
-                    JOptionPane.showMessageDialog(start, "All Fields Are Required");
+                    JOptionPane.showMessageDialog(start, "Por favor, preencha com todos dados");
                 } else if (p1.getText().length() >= 14) {
-                    JOptionPane.showMessageDialog(start, "Maximum Length for name is 14 digits");
+                    JOptionPane.showMessageDialog(start, "Nome não deve possuir mais que 14 caracteres");
                 } else {
                     start.setVisible(false);
                     try {

@@ -9,6 +9,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Jogador {
+    private static int cont = 0;
+    private int id;
     private String nome;
     private ArrayList<Carta> cartasJogador = new ArrayList<>();
     private Random randomico = new Random();
@@ -18,12 +20,14 @@ public class Jogador {
     private IA ia;
 
     public Jogador(Time time) {
+        this.id = cont++;
         this.time = time;
         this.setNome();
         this.jogadorIA = true;
     }
 
     public Jogador(String nome) {
+        this.id = cont++;
         Time time = new Time();
         this.time = time;
         this.nome = nome;
@@ -138,4 +142,11 @@ public class Jogador {
         jogada = null;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

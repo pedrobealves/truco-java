@@ -13,6 +13,7 @@ public class Carta {
     private ImageIcon imagem = new ImageIcon(caminhoImg + "fundov.png");
     public Carta(int valor, int naipe) {
 
+        //Cada carta tem seu id, medido também sua força
         this.id = cont++;
 
         switch (naipe) {
@@ -76,6 +77,7 @@ public class Carta {
         return naipe;
     }
 
+    //Ao virar carta ele deve receber sua imagem correpondente
     public void virar() {
         this.verso = !this.verso;
         ImageIcon icon = new ImageIcon(caminhoImg + getId() + ".png");
@@ -90,11 +92,13 @@ public class Carta {
         this.id = id;
     }
 
+    //Ao virar carta ele deve receber sua imagem correpondente
     public ImageIcon vira() {
         ImageIcon icon = new ImageIcon(caminhoImg + getId() + ".png");
         return icon;
     }
 
+    //Pegar imagem de carta
     public ImageIcon getImagem() {
         return imagem;
     }

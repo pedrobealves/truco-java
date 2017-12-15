@@ -22,6 +22,7 @@ public class Controle implements ActionListener, MouseListener {
         this.jogo = jogo;
         this.gui = gui;
         this.mesa = mesa;
+        //Adiciona função aos botões
         addActionListeners();
         gui.getRodada().addActionListener(this);
         gui.getTruco().addActionListener(this);
@@ -44,6 +45,7 @@ public class Controle implements ActionListener, MouseListener {
 
     private void updatefield() {
 
+        //Se pontos chegarem a 12 o isAcabar recebe true
         if (mesa.isAcabar()) {
             Object[] options = {"Final de jogo!!!"};
             int choice = JOptionPane.showOptionDialog(gui, "Jogo acabou, o time vencedor é " + mesa.getVencedorJogo().getNome() + "", null, JOptionPane.INFORMATION_MESSAGE, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
@@ -163,30 +165,32 @@ public class Controle implements ActionListener, MouseListener {
             mesa.proximaRodada();
         }*/
 
+        //Botão truco
         if (arg0.getSource() == gui.getTruco()) {
             if (Objects.equals(jogo.getJogador().get(1).getIA().getVencedorTemp().getTime(), jogo.getJogador().get(0).getTime())) {
                 JOptionPane.showMessageDialog(null, "Seu truco não foi aceito ");
                 //mesa.setRodadaR(4);
             } else {
                 JOptionPane.showMessageDialog(null, "Seu truco foi aceito ");
-                if (mesa.getValorTruco() == 1)
-                    mesa.setValorTruco();
-                else
-                    mesa.setValorTruco();
+                mesa.setValorTruco();
             }
         }
+
+        //Botão carta de jogador
         if (arg0.getSource() instanceof CartaButton) {
             mesa.limparMesa();
             Carta carta = ((CartaButton) arg0.getSource()).getCarta();
             jogo.getJogador().get(0).setJogada(carta);
             jogo.getJogador().get(0).getCartasJogador().remove(carta);
+            jogo.getJogador().get(0).visualCartaJogada();
             mesa.ordemJogadas();
+            mesa.vencedorMao();
             mesa.proximaRodada();
-            mesa.vencedorRodada();
-            mesa.vencedorJogo();
             updatefield();
             mesa.limparMesa();
             if (mesa.getRodada() >= 3) {
+                mesa.vencedorRodada();
+                mesa.vencedorJogo();
                 mesa.setRodada();
                 Carta.cont = 0;
                 jogo.criaNovoBaralho();

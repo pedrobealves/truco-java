@@ -14,11 +14,15 @@ public class IA {
         this.jogador.add(jogador);
     }
 
+
     public int gerarJogada(Jogador vezJogador) {
 
+        //Vezjogador recebe jogador
         this.vezJogador = vezJogador;
 
+        //Verifica se não exite ganhador no momento
         if (vencedorTemp != null) {
+            //Se ganhador for da mesma equipe
             if (vencedorTemp.getTime() == vezJogador.getTime())
                 return menorCarta();
         }

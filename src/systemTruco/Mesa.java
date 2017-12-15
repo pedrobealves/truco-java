@@ -40,11 +40,13 @@ public class Mesa {
         }*/
     }
 
+    //Limpar carta jogada
     public void limparMesa() {
         for (Jogador aJogador : jogador)
             aJogador.limparCartaJogada();
     }
 
+    //Verificar manilha
     public void manilha() {
         vira = baralho.get(2);
         for (Carta c : baralho) {
@@ -62,6 +64,7 @@ public class Mesa {
         for (Jogador aJogador : jogador) aJogador.distribuiCartas(baralho);
     }
 
+    //Verificar ganhador, da rodada/ e ou tmeporário
     public void verificarGanhador() {
 
         vencedor = null;
@@ -89,7 +92,9 @@ public class Mesa {
     }
 
     public void vencedorMao() {
+        verificarGanhador();
         System.out.println("\nMaior carta - " + vencedor.cartaJogada().getValor() + " " + vencedor.cartaJogada().getNaipe());
+        System.out.println("\nJogador da Maior carta - " + vencedor.getNome() + vencedor.getTime().getNome());
         vencedor.getTime().setPlacarRodada();
     }
 
@@ -131,19 +136,6 @@ public class Mesa {
                 aJogador.visualCartaJogada();
                 verificarGanhador();
                 aJogador.getIA().setVencedorTemp(vencedor);
-            }
-        }
-    }
-
-    public void ordemJogadasA() {
-        if (vencedor.isJogadorIA()) {
-            int i = vencedor.getId();
-            for (; i < 4; i++) {
-                jogador.get(i).gerarJogada();
-                jogador.get(i).cartaJogada().virar();
-                jogador.get(i).visualCartaJogada();
-                verificarGanhador();
-                jogador.get(i).getIA().setVencedorTemp(vencedor);
             }
         }
     }
@@ -193,14 +185,10 @@ public class Mesa {
     }
 
     public void setValorTruco() {
-        this.valorTruco += 3;
+        valorTruco = valorTruco == 1 ? 3 : valorTruco + 3;
     }
 
     public void setRodadaR(int v) {
         this.rodada = v;
-    }
-
-    public void setValorTruco(int valor) {
-        this.valorTruco = valor;
     }
 }

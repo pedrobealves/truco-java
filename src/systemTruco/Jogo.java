@@ -19,6 +19,7 @@ public class Jogo {
         this.criaJogadores(playerNome, numeroJogadores);
     }
 
+    //Criar baralho de jogo
     public void criaBaralho() {
         for (int n = 0; n < 4; n++) {
             for (int f = 0; f < 10; f++) {
@@ -28,11 +29,13 @@ public class Jogo {
         }
     }
 
+    //Para prócima rodas deve criar um novo baralho
     public void criaNovoBaralho() {
         baralho.clear();
         criaBaralho();
     }
 
+    //Função embaralhar cartas
     public void embaralhaCartas() {
 
         Collections.shuffle(baralho, this.randomico);
@@ -57,6 +60,7 @@ public class Jogo {
         Jogador jogadorIA3 = new Jogador(timeIA);
         jogador.add(jogadorIA3);*/
         Time timeIA = new Time(timeAdversarioIA);
+        //Deve ser atribuido o mesmo time no caso de 4 jogadores, para 2 joagdores
         for (int i = 1; i < numeroJogadores; i++) {
             if (i < 3) {
                 Jogador jogadorIA = new Jogador(timeIA);

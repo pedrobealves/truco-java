@@ -1,3 +1,12 @@
+/*
+
+@author Pedro Bernardi Alves / Vinicus
+
+Jogo de truco em java para disciplina de POO
+
+Feito na ide Intellij IDEA, caso oscasione um erro, por favor execute o systemTruco.jar da pagina principal
+ */
+
 package systemTruco;
 
 import javax.swing.*;
@@ -6,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+
 
 public class Gui extends JFrame {
 
@@ -35,8 +45,10 @@ public class Gui extends JFrame {
     private JLabel valorPlacar;
     private JLabel valorRodada;
 
+    //Criar interface jframe
     public Gui(String playerNome, int numeroJogadores) throws IOException {
         super("SystemTRUCO");
+        //Recebe fundo de jogo
         ImageIcon bg = new ImageIcon("src/resources/fundo.png");
         JLabel g = new JLabel(bg);
         g.setVisible(true);
@@ -57,14 +69,12 @@ public class Gui extends JFrame {
         this.getContentPane().setLayout(null);
         this.setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        //Cria novo jogo com nome de jogador já recebido e numero de jogadores
         jogo = new Jogo(playerNome, numeroJogadores);
-        update();
-        new Controle(jogo, this, mesa);
-    }
-
-    public void update() {
+        //Faz o update em desenho do visual
         mesa = new Mesa(jogo.getBaralho(), jogo.getJogador());
 
+        //Criar painel de cartas de jogadores
         cartasPanel1 = new CartasPanel(jogo.getJogador().get(0));
         cartasPanel2 = new CartasPanel(jogo.getJogador().get(3));
         cartasPanel3 = new CartasPanel(jogo.getJogador().get(2));
@@ -178,6 +188,8 @@ public class Gui extends JFrame {
         panelP4.setBounds(500, 200, 700, 300);
 
         this.validate();
+        //Cria classe que controla operações do jogo em sua interface
+        new Controle(jogo, this, mesa);
     }
 
     public void setValorPlacar(int valorPlacar) {

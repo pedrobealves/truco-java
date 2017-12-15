@@ -50,6 +50,7 @@ public class Jogador {
         System.out.println("\n" + jogada.getValor() + " " + jogada.getNaipe());
     }
 
+    //Atribuir nome ao jogadorIA
     private void setNome() {
         File arq = new File("src\\systemTruco\\Nomes");
         try (Reader in = new FileReader(arq); BufferedReader br = new
@@ -66,6 +67,7 @@ public class Jogador {
         }
     }
 
+    //Distruibuir cartas aos jogadores, removendo a mesma do baralho
     public void distribuiCartas(ArrayList<Carta> c) {
         for (int i = 0; i < 3; i++)
             cartasJogador.add(c.remove(i));

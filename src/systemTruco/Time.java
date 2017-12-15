@@ -6,7 +6,7 @@ import java.awt.*;
 public class Time {
     private timesNomes nome;
     private int placarRodada;
-    static private int placarGeral;
+    private int placarGeral;
 
     public static enum timesNomes {
         VERMELHO(1), AZUL(2), VERDE(3), AMARELO(4), CIANO(5), ROXO(6);
@@ -80,6 +80,7 @@ public class Time {
         this.placarGeral += valorTruco;
     }
 
+    //Retorna cor de time
     public Color coresTimes(Jogador j) {
         Color cor = new Color(0x000000);
         switch (j.getTime().nome.codigo) {

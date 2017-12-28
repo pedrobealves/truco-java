@@ -1,4 +1,4 @@
-package systemTruco;
+package systemTruco.mesa.carta;
 
 import javax.swing.*;
 import java.awt.*;

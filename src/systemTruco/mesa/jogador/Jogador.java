@@ -1,4 +1,7 @@
-package systemTruco;
+package systemTruco.mesa.jogador;
+
+import systemTruco.mesa.carta.Carta;
+import systemTruco.controle.IA;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,7 +9,6 @@ import java.io.FileReader;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Jogador {
     private static int cont = 0;
@@ -52,7 +54,7 @@ public class Jogador {
 
     //Atribuir nome ao jogadorIA
     private void setNome() {
-        File arq = new File("src\\systemTruco\\Nomes");
+        File arq = new File("src\\systemTruco\\mesa\\jogador\\Nomes");
         try (Reader in = new FileReader(arq); BufferedReader br = new
                 BufferedReader(in)) {
             String linha;

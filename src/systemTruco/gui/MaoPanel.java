@@ -1,10 +1,9 @@
-package systemTruco;
+package systemTruco.gui;
 
 import javax.swing.*;
 
-import systemTruco.Carta;
-import systemTruco.Jogador;
-import systemTruco.CartaButton;
+import systemTruco.mesa.carta.Carta;
+import systemTruco.mesa.jogador.Jogador;
 
 import java.awt.*;
 import java.util.ArrayList;

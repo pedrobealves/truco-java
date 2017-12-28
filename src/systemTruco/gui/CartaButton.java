@@ -1,8 +1,8 @@
-package systemTruco;
+package systemTruco.gui;
 
 import javax.swing.*;
 
-import systemTruco.Carta;
+import systemTruco.mesa.carta.Carta;
 
 public class CartaButton extends JButton {
     private Carta carta;

@@ -1,11 +1,11 @@
-package systemTruco;
+package systemTruco.gui;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-import systemTruco.Jogador;
-import systemTruco.Carta;
+import systemTruco.mesa.jogador.Jogador;
+import systemTruco.mesa.carta.Carta;
 
 public class CartasPanel extends JPanel {
     private CartaButton cartas;

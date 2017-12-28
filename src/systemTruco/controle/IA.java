@@ -1,4 +1,7 @@
-package systemTruco;
+package systemTruco.controle;
+
+import systemTruco.mesa.carta.Carta;
+import systemTruco.mesa.jogador.Jogador;
 
 import java.util.ArrayList;
 import java.util.Objects;

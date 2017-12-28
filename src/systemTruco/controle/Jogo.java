@@ -1,8 +1,9 @@
-package systemTruco;
+package systemTruco.controle;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
+import systemTruco.mesa.carta.Carta;
+import systemTruco.mesa.jogador.Jogador;
+import systemTruco.mesa.jogador.Time;
 
-import javax.swing.*;
 import java.util.*;
 
 public class Jogo {

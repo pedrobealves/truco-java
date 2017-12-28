@@ -1,4 +1,11 @@
-package systemTruco;
+package systemTruco.controle;
+
+import systemTruco.mesa.carta.Carta;
+import systemTruco.mesa.Mesa;
+import systemTruco.gui.CartaButton;
+import systemTruco.gui.CartasPanel;
+import systemTruco.gui.Gui;
+import systemTruco.gui.MaoPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,7 +13,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 

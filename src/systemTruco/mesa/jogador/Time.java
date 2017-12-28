@@ -1,4 +1,6 @@
-package systemTruco;
+package systemTruco.mesa.jogador;
+
+import systemTruco.mesa.jogador.Jogador;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +18,7 @@ public class Time {
             this.codigo = codigo;
         }
 
-        int codigo() {
+        public int codigo() {
             return codigo;
         }
     }

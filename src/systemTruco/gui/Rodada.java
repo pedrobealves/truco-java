@@ -1,4 +1,4 @@
-package systemTruco;
+package systemTruco.gui;
 
 import javax.swing.*;
 import java.awt.*;

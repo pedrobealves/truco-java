@@ -1,9 +1,11 @@
-package systemTruco;
+package systemTruco.mesa;
+
+import systemTruco.mesa.carta.Carta;
+import systemTruco.mesa.jogador.Jogador;
+import systemTruco.mesa.jogador.Time;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class Mesa {
 

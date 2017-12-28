@@ -7,7 +7,12 @@ Jogo de truco em java para disciplina de POO
 Feito na ide Intellij IDEA, caso oscasione um erro, por favor execute o systemTruco.jar da pagina principal
  */
 
-package systemTruco;
+package systemTruco.gui;
+
+import systemTruco.controle.Controle;
+import systemTruco.controle.Jogo;
+import systemTruco.mesa.Mesa;
+import systemTruco.mesa.carta.Carta;
 
 import javax.swing.*;
 import java.awt.*;

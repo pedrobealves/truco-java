@@ -1,10 +1,7 @@
 /*
 
-@author Pedro Bernardi Alves / Vinicus
+@author Pedro Bernardi Alves
 
-Jogo de truco em java para disciplina de POO
-
-Feito na ide Intellij IDEA, caso oscasione um erro, por favor execute o systemTruco.jar da pagina principal
  */
 
 package systemTruco.gui;
@@ -49,6 +46,7 @@ public class Gui extends JFrame {
     private JLabel placar;
     private JLabel valorPlacar;
     private JLabel valorRodada;
+    private RodadaPanel rodadaPanel;
 
     //Criar interface jframe
     public Gui(String playerNome, int numeroJogadores) throws IOException {
@@ -174,6 +172,8 @@ public class Gui extends JFrame {
         panelPrincipal.add(valorRodada);
         panelPrincipal.add(valorPlacar);
         panelPrincipal.add(placar);
+        rodadaPanel = new RodadaPanel();
+        panelPrincipal.add(rodadaPanel);
         this.add(panelPrincipal);
         panelPrincipal.setBounds(0, 0, 1300, 800);
         truco.setBounds(5, 645, 157, 39);
